@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="kung_note_code">
+	<typeAlias alias="kung_note_code" type="com.mp.model.kung_note_code.Kung_note_code" />
+
+	<select id="selectkung_note_codeById" parameterClass="String" resultClass="Kung_note_code">
+		SELECT * FROM kung_note_code WHERE ID=#id#
+	</select>
+
+
+	<delete id="deletekung_note_code" parameterClass="String"> 
+		DELETE FROM kung_note_code WHERE ID=#id#
+	</delete>
+
+	<select id="selectkung_note_codeByParam" parameterClass="java.util.Map" resultClass="Kung_note_code">
+		SELECT *
+		FROM kung_note_code
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id"> ID =#id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="js_t"> JS_T =#js_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="st_lv"> ST_LV =#st_lv# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cm_tx"> CM_TX =#cm_tx# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_dtFrom"> FS_DT &gt;=#fs_dtFrom# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_dtTo"> FS_DT &lt;=#fs_dtTo# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_dt"> FS_DT =#fs_dt# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="c_dtFrom"> C_DT &gt;=#c_dtFrom# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="c_dtTo"> C_DT &lt;=#c_dtTo# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="c_dt"> C_DT =#c_dt# </isNotEmpty>
+		</dynamic> 
+		ORDER BY ID DESC 
+		LIMIT #fromPage#,#toPage# 
+	</select>
+
+	<select id="selectCountkung_note_codeByParam" parameterClass="java.util.Map" resultClass="int">
+		SELECT COUNT(ID) 
+		FROM kung_note_code 
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id"> ID =#id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="js_t"> JS_T =#js_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="st_lv"> ST_LV =#st_lv# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cm_tx"> CM_TX =#cm_tx# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_dtFrom"> FS_DT &gt;=#fs_dtFrom# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_dtTo"> FS_DT &lt;=#fs_dtTo# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_dt"> FS_DT =#fs_dt# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="c_dtFrom"> C_DT &gt;=#c_dtFrom# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="c_dtTo"> C_DT &lt;=#c_dtTo# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="c_dt"> C_DT =#c_dt# </isNotEmpty>
+		</dynamic> 
+	</select>
+
+	<update id="updatekung_note_code" parameterClass="Kung_note_code">
+		UPDATE kung_note_code 
+		<dynamic prepend="SET">
+			<isNotEmpty prepend="," property="id"> ID=#id# </isNotEmpty>
+			<isNotEmpty prepend="," property="js_t"> JS_T=#js_t# </isNotEmpty>
+			<isNotEmpty prepend="," property="st_lv"> ST_LV=#st_lv# </isNotEmpty>
+			<isNotEmpty prepend="," property="cm_tx"> CM_TX=#cm_tx# </isNotEmpty>
+			<isNotEmpty prepend="," property="fs_dt"> FS_DT=#fs_dt# </isNotEmpty>
+			<isNotEmpty prepend="," property="c_dt"> C_DT=#c_dt# </isNotEmpty>
+		</dynamic>
+		WHERE ID=#id#
+	</update>
+
+	<insert id="addkung_note_code" parameterClass="Kung_note_code">
+		INSERT INTO kung_note_code (
+		<dynamic prepend=" ">
+			<isNotEmpty property="js_t" prepend=","> JS_T </isNotEmpty>
+			<isNotEmpty property="st_lv" prepend=","> ST_LV </isNotEmpty>
+			<isNotEmpty property="cm_tx" prepend=","> CM_TX </isNotEmpty>
+			<isNotEmpty property="fs_dt" prepend=","> FS_DT </isNotEmpty>
+			<isNotEmpty property="c_dt" prepend=","> C_DT </isNotEmpty>
+		</dynamic>
+		<![CDATA[
+		) VALUES (		]]>
+		<dynamic prepend=" ">
+			<isNotEmpty property="js_t" prepend=","> #js_t# </isNotEmpty>
+			<isNotEmpty property="st_lv" prepend=","> #st_lv# </isNotEmpty>
+			<isNotEmpty property="cm_tx" prepend=","> #cm_tx# </isNotEmpty>
+			<isNotEmpty property="fs_dt" prepend=","> #fs_dt# </isNotEmpty>
+			<isNotEmpty property="c_dt" prepend=","> #c_dt# </isNotEmpty>
+		</dynamic>
+		<![CDATA[  ) ]]>
+		<selectKey resultClass="long" keyProperty="id" > 
+			SELECT LAST_INSERT_ID()
+		</selectKey> 
+	</insert>
+</sqlMap>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="kung_message">
+	<typeAlias alias="kung_message" type="com.mp.model.kung_message.Kung_message" />
+
+	<select id="selectkung_messageById" parameterClass="String" resultClass="Kung_message">
+		SELECT * FROM kung_message WHERE ID=#id#
+	</select>
+
+
+	<delete id="deletekung_message" parameterClass="String"> 
+		DELETE FROM kung_message WHERE ID=#id#
+	</delete>
+
+	<select id="selectkung_messageByParam" parameterClass="java.util.Map" resultClass="Kung_message">
+		SELECT *
+		FROM kung_message
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id"> ID =#id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_t"> FS_T =#fs_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="js_t"> JS_T =#js_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="js_id"> JS_ID =#js_id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="st_lv"> ST_LV =#st_lv# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cm_tx"> CM_TX =#cm_tx# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_dtFrom"> FS_DT &gt;=#fs_dtFrom# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_dtTo"> FS_DT &lt;=#fs_dtTo# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_dt"> FS_DT =#fs_dt# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="c_dtFrom"> C_DT &gt;=#c_dtFrom# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="c_dtTo"> C_DT &lt;=#c_dtTo# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="c_dt"> C_DT =#c_dt# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cd_n"> CD_N =#cd_n# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="yw_t"> YW_T =#yw_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="yy_t"> YY_T =#yy_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="dy_id"> DY_ID =#dy_id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="status"> STATUS =#status# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="num"> NUM =#num# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="ds_dtFrom"> DS_DT &gt;=#ds_dtFrom# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="ds_dtTo"> DS_DT &lt;=#ds_dtTo# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="ds_dt"> DS_DT =#ds_dt# </isNotEmpty>
+		</dynamic> 
+		ORDER BY ID DESC 
+		LIMIT #fromPage#,#toPage# 
+	</select>
+
+	<select id="selectCountkung_messageByParam" parameterClass="java.util.Map" resultClass="int">
+		SELECT COUNT(id) 
+		FROM kung_message 
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id"> ID =#id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_t"> FS_T =#fs_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="js_t"> JS_T =#js_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="js_id"> JS_ID =#js_id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="st_lv"> ST_LV =#st_lv# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cm_tx"> CM_TX =#cm_tx# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_dtFrom"> FS_DT &gt;=#fs_dtFrom# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_dtTo"> FS_DT &lt;=#fs_dtTo# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="fs_dt"> FS_DT =#fs_dt# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="c_dtFrom"> C_DT &gt;=#c_dtFrom# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="c_dtTo"> C_DT &lt;=#c_dtTo# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="c_dt"> C_DT =#c_dt# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cd_n"> CD_N =#cd_n# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="yw_t"> YW_T =#yw_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="yy_t"> YY_T =#yy_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="dy_id"> DY_ID =#dy_id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="status"> STATUS =#status# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="num"> NUM =#num# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="ds_dtFrom"> DS_DT &gt;=#ds_dtFrom# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="ds_dtTo"> DS_DT &lt;=#ds_dtTo# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="ds_dt"> DS_DT =#ds_dt# </isNotEmpty>
+		</dynamic> 
+	</select>
+
+	<update id="updatekung_message" parameterClass="Kung_message">
+		UPDATE kung_message 
+		<dynamic prepend="SET">
+			<isNotEmpty prepend="," property="id"> ID=#id# </isNotEmpty>
+			<isNotEmpty prepend="," property="fs_t"> FS_T=#fs_t# </isNotEmpty>
+			<isNotEmpty prepend="," property="js_t"> JS_T=#js_t# </isNotEmpty>
+			<isNotEmpty prepend="," property="js_id"> JS_ID=#js_id# </isNotEmpty>
+			<isNotEmpty prepend="," property="st_lv"> ST_LV=#st_lv# </isNotEmpty>
+			<isNotEmpty prepend="," property="cm_tx"> CM_TX=#cm_tx# </isNotEmpty>
+			<isNotEmpty prepend="," property="fs_dt"> FS_DT=#fs_dt# </isNotEmpty>
+			<isNotEmpty prepend="," property="c_dt"> C_DT=#c_dt# </isNotEmpty>
+			<isNotEmpty prepend="," property="cd_n"> CD_N=#cd_n# </isNotEmpty>
+			<isNotEmpty prepend="," property="yw_t"> YW_T=#yw_t# </isNotEmpty>
+			<isNotEmpty prepend="," property="yy_t"> YY_T=#yy_t# </isNotEmpty>
+			<isNotEmpty prepend="," property="dy_id"> DY_ID=#dy_id# </isNotEmpty>
+			<isNotEmpty prepend="," property="status"> STATUS=#status# </isNotEmpty>
+			<isNotEmpty prepend="," property="num"> NUM=#num# </isNotEmpty>
+			<isNotEmpty prepend="," property="ds_dt"> DS_DT=#ds_dt# </isNotEmpty>
+			
+		</dynamic>
+		WHERE ID=#id#
+	</update>
+
+	<insert id="addkung_message" parameterClass="Kung_message">
+		INSERT INTO kung_message (
+		<dynamic prepend=" ">
+			<isNotEmpty property="fs_t" prepend=","> FS_T </isNotEmpty>
+			<isNotEmpty property="js_t" prepend=","> JS_T </isNotEmpty>
+			<isNotEmpty property="js_id" prepend=","> JS_ID </isNotEmpty>
+			<isNotEmpty property="st_lv" prepend=","> ST_LV </isNotEmpty>
+			<isNotEmpty property="cm_tx" prepend=","> CM_TX </isNotEmpty>
+			<isNotEmpty property="fs_dt" prepend=","> FS_DT </isNotEmpty>
+			<isNotEmpty property="c_dt" prepend=","> C_DT </isNotEmpty>
+			<isNotEmpty property="cd_n" prepend=","> CD_N </isNotEmpty>
+			<isNotEmpty property="yw_t" prepend=","> YW_T </isNotEmpty>
+			<isNotEmpty property="yy_t" prepend=","> YY_T </isNotEmpty>
+			<isNotEmpty property="dy_id" prepend=","> DY_ID </isNotEmpty>
+			<isNotEmpty property="status" prepend=","> STATUS </isNotEmpty>
+			<isNotEmpty property="num" prepend=","> NUM </isNotEmpty>
+			<isNotEmpty property="ds_dt" prepend=","> DS_DT </isNotEmpty>
+		</dynamic>
+		<![CDATA[
+		) VALUES (		]]>
+		<dynamic prepend=" ">
+			<isNotEmpty property="fs_t" prepend=","> #fs_t# </isNotEmpty>
+			<isNotEmpty property="js_t" prepend=","> #js_t# </isNotEmpty>
+			<isNotEmpty property="js_id" prepend=","> #js_id# </isNotEmpty>
+			<isNotEmpty property="st_lv" prepend=","> #st_lv# </isNotEmpty>
+			<isNotEmpty property="cm_tx" prepend=","> #cm_tx# </isNotEmpty>
+			<isNotEmpty property="fs_dt" prepend=","> #fs_dt# </isNotEmpty>
+			<isNotEmpty property="c_dt" prepend=","> #c_dt# </isNotEmpty>
+			<isNotEmpty property="cd_n" prepend=","> #cd_n# </isNotEmpty>
+			<isNotEmpty property="yw_t" prepend=","> #yw_t# </isNotEmpty>
+			<isNotEmpty property="yy_t" prepend=","> #yy_t# </isNotEmpty>
+			<isNotEmpty property="dy_id" prepend=","> #dy_id# </isNotEmpty>
+			<isNotEmpty property="status" prepend=","> #status# </isNotEmpty>
+			<isNotEmpty property="num" prepend=","> #num# </isNotEmpty>
+			<isNotEmpty property="ds_dt" prepend=","> #ds_dt# </isNotEmpty>
+		</dynamic>
+		<![CDATA[  ) ]]>
+		<selectKey resultClass="long" keyProperty="id" > 
+			SELECT LAST_INSERT_ID()
+		</selectKey> 
+	</insert>
+</sqlMap>

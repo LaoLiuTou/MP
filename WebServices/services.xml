@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans >
+	<service xmlns="http://xfire.codehaus.org/config/1.0">
+		<name>Kung_dxdyWS</name>
+		<serviceClass>com.mp.webService.kung_dxdy.IKung_dxdyWS</serviceClass>
+		<implementationClass>
+			com.mp.webService.kung_dxdy.Kung_dxdyWSImpl
+		</implementationClass>
+		<style>wrapped</style>
+		<use>literal</use>
+		<scope>application</scope>
+	</service>
+	<service xmlns="http://xfire.codehaus.org/config/1.0">
+		<name>Kung_dy_userWS</name>
+		<serviceClass>com.mp.webService.kung_dy_user.IKung_dy_userWS</serviceClass>
+		<implementationClass>
+			com.mp.webService.kung_dy_user.Kung_dy_userWSImpl
+		</implementationClass>
+		<style>wrapped</style>
+		<use>literal</use>
+		<scope>application</scope>
+	</service>
+	<service xmlns="http://xfire.codehaus.org/config/1.0">
+		<name>Kung_dy_editWS</name>
+		<serviceClass>com.mp.webService.kung_dy_edit.IKung_dy_editWS</serviceClass>
+		<implementationClass>
+			com.mp.webService.kung_dy_edit.Kung_dy_editWSImpl
+		</implementationClass>
+		<style>wrapped</style>
+		<use>literal</use>
+		<scope>application</scope>
+	</service>
+	<service xmlns="http://xfire.codehaus.org/config/1.0">
+		<name>Kung_messageWS</name>
+		<serviceClass>com.mp.webService.kung_message.IKung_messageWS</serviceClass>
+		<implementationClass>
+			com.mp.webService.kung_message.Kung_messageWSImpl
+		</implementationClass>
+		<style>wrapped</style>
+		<use>literal</use>
+		<scope>application</scope>
+	</service>
+</beans>
