@@ -8,7 +8,7 @@ public class MD5Encryption {
     }
   
     public static String getEncryption(String originString) {
-        String result = null;
+        String result = "";
         if (originString != null) {
             try {
                 // 指定加密的方式为MD5
@@ -28,5 +28,10 @@ public class MD5Encryption {
             }
         }
         return result.toUpperCase();
+    }
+  public static void main(String[] args){
+    	
+    	System.out.println(getEncryption("000000"));
+    	
     }
 }

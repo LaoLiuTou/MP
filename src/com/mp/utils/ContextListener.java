@@ -40,7 +40,7 @@ public class ContextListener implements ServletContextListener {
         event.getServletContext().log("定时器已启动"); 
         System.out.println("定时器已启动");
         timer.schedule(new MyTask(event.getServletContext(),retry), period,10000);  
-        //timer.schedule(new CodeTask(event.getServletContext()), 5000,10000); 
+        timer.schedule(new CodeTask(event.getServletContext(),retry), 5000,10000); 
         
        // event.getServletContext().log("已经添加任务调度表");  
 
