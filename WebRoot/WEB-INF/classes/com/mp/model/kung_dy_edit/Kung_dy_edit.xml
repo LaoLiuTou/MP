@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="kung_dy_edit">
+	<typeAlias alias="kung_dy_edit" type="com.mp.model.kung_dy_edit.Kung_dy_edit" />
+
+	<select id="selectkung_dy_editById" parameterClass="String" resultClass="Kung_dy_edit">
+		SELECT * FROM kung_dy_edit WHERE ID=#id#
+	</select>
+
+
+	<delete id="deletekung_dy_edit" parameterClass="String"> 
+		DELETE FROM kung_dy_edit WHERE ID=#id#
+	</delete>
+
+	<select id="selectkung_dy_editByParam" parameterClass="java.util.Map" resultClass="Kung_dy_edit">
+		SELECT *
+		FROM kung_dy_edit
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id"> ID =#id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="user_id"> USER_ID =#user_id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="dy_id"> DY_ID =#dy_id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cz_lv"> CZ_LV =#cz_lv# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cz_dtFrom"> CZ_DT &gt;=#cz_dtFrom# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cz_dtTo"> CZ_DT &lt;=#cz_dtTo# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cz_dt"> CZ_DT =#cz_dt# </isNotEmpty>
+		</dynamic> 
+		ORDER BY ID DESC 
+		LIMIT #fromPage#,#toPage# 
+	</select>
+
+	<select id="selectCountkung_dy_editByParam" parameterClass="java.util.Map" resultClass="int">
+		SELECT COUNT(ID) 
+		FROM kung_dy_edit 
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id"> ID =#id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="user_id"> USER_ID =#user_id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="dy_id"> DY_ID =#dy_id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cz_lv"> CZ_LV =#cz_lv# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cz_dtFrom"> CZ_DT &gt;=#cz_dtFrom# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cz_dtTo"> CZ_DT &lt;=#cz_dtTo# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="cz_dt"> CZ_DT =#cz_dt# </isNotEmpty>
+		</dynamic> 
+	</select>
+
+	<update id="updatekung_dy_edit" parameterClass="Kung_dy_edit">
+		UPDATE kung_dy_edit 
+		<dynamic prepend="SET">
+			<isNotEmpty prepend="," property="id"> ID=#id# </isNotEmpty>
+			<isNotEmpty prepend="," property="user_id"> USER_ID=#user_id# </isNotEmpty>
+			<isNotEmpty prepend="," property="dy_id"> DY_ID=#dy_id# </isNotEmpty>
+			<isNotEmpty prepend="," property="cz_lv"> CZ_LV=#cz_lv# </isNotEmpty>
+			<isNotEmpty prepend="," property="cz_dt"> CZ_DT=#cz_dt# </isNotEmpty>
+		</dynamic>
+		WHERE ID=#id#
+	</update>
+
+	<insert id="addkung_dy_edit" parameterClass="Kung_dy_edit">
+		INSERT INTO kung_dy_edit (
+		<dynamic prepend=" ">
+			<isNotEmpty property="user_id" prepend=","> USER_ID </isNotEmpty>
+			<isNotEmpty property="dy_id" prepend=","> DY_ID </isNotEmpty>
+			<isNotEmpty property="cz_lv" prepend=","> CZ_LV </isNotEmpty>
+			<isNotEmpty property="cz_dt" prepend=","> CZ_DT </isNotEmpty>
+		</dynamic>
+		<![CDATA[
+		) VALUES (		]]>
+		<dynamic prepend=" ">
+			<isNotEmpty property="user_id" prepend=","> #user_id# </isNotEmpty>
+			<isNotEmpty property="dy_id" prepend=","> #dy_id# </isNotEmpty>
+			<isNotEmpty property="cz_lv" prepend=","> #cz_lv# </isNotEmpty>
+			<isNotEmpty property="cz_dt" prepend=","> #cz_dt# </isNotEmpty>
+		</dynamic>
+		<![CDATA[  ) ]]>
+		<selectKey resultClass="long" keyProperty="id" > 
+			SELECT LAST_INSERT_ID()
+		</selectKey> 
+	</insert>
+</sqlMap>

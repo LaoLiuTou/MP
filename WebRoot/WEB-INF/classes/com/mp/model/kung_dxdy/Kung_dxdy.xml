@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="kung_dxdy">
+	<typeAlias alias="kung_dxdy" type="com.mp.model.kung_dxdy.Kung_dxdy" />
+
+	<select id="selectkung_dxdyById" parameterClass="String" resultClass="Kung_dxdy">
+		SELECT * FROM kung_dxdy WHERE ID=#id#
+	</select>
+
+
+	<delete id="deletekung_dxdy" parameterClass="String"> 
+		DELETE FROM kung_dxdy WHERE ID=#id#
+	</delete>
+
+	<select id="selectkung_dxdyByParam" parameterClass="java.util.Map" resultClass="Kung_dxdy">
+		SELECT *
+		FROM kung_dxdy
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id"> ID =#id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="dy_t"> DY_T =#dy_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="td_t"> TD_T =#td_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="yw_t"> YW_T =#yw_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="nm_t"> NM_T =#nm_t# </isNotEmpty>
+		</dynamic> 
+		ORDER BY ID DESC 
+		LIMIT #fromPage#,#toPage# 
+	</select>
+
+	<select id="selectCountkung_dxdyByParam" parameterClass="java.util.Map" resultClass="int">
+		SELECT COUNT(ID) 
+		FROM kung_dxdy 
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="id"> ID =#id# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="dy_t"> DY_T =#dy_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="td_t"> TD_T =#td_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="yw_t"> YW_T =#yw_t# </isNotEmpty>
+			<isNotEmpty prepend="AND" property="nm_t"> NM_T =#nm_t# </isNotEmpty>
+		</dynamic> 
+	</select>
+
+	<update id="updatekung_dxdy" parameterClass="Kung_dxdy">
+		UPDATE kung_dxdy 
+		<dynamic prepend="SET">
+			<isNotEmpty prepend="," property="id"> ID=#id# </isNotEmpty>
+			<isNotEmpty prepend="," property="dy_t"> DY_T=#dy_t# </isNotEmpty>
+			<isNotEmpty prepend="," property="td_t"> TD_T=#td_t# </isNotEmpty>
+			<isNotEmpty prepend="," property="yw_t"> YW_T=#yw_t# </isNotEmpty>
+			<isNotEmpty prepend="," property="nm_t"> NM_T=#nm_t# </isNotEmpty>
+		</dynamic>
+		WHERE ID=#id#
+	</update>
+
+	<insert id="addkung_dxdy" parameterClass="Kung_dxdy">
+		INSERT INTO kung_dxdy (
+		<dynamic prepend=" ">
+			<isNotEmpty property="dy_t" prepend=","> DY_T </isNotEmpty>
+			<isNotEmpty property="td_t" prepend=","> TD_T </isNotEmpty>
+			<isNotEmpty property="yw_t" prepend=","> YW_T </isNotEmpty>
+			<isNotEmpty property="nm_t" prepend=","> NM_T </isNotEmpty>
+		</dynamic>
+		<![CDATA[
+		) VALUES (		]]>
+		<dynamic prepend=" ">
+			<isNotEmpty property="dy_t" prepend=","> #dy_t# </isNotEmpty>
+			<isNotEmpty property="td_t" prepend=","> #td_t# </isNotEmpty>
+			<isNotEmpty property="yw_t" prepend=","> #yw_t# </isNotEmpty>
+			<isNotEmpty property="nm_t" prepend=","> #nm_t# </isNotEmpty>
+		</dynamic>
+		<![CDATA[  ) ]]>
+		<selectKey resultClass="long" keyProperty="id" > 
+			SELECT LAST_INSERT_ID()
+		</selectKey> 
+	</insert>
+</sqlMap>
